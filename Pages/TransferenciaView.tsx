@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useBanca} from '../Context/BancaContext';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const TransferenciaView: React.FC = ({ navegacion }: any) => {
+type RootStackParamList = {
+  Inicio: undefined;
+  Transferencias: undefined;
+  Historial: undefined;
+};
+
+type TransferenciaView = StackScreenProps<RootStackParamList, 'Transferencias'>;
+
+const TransferenciaView: React.FC = ({ navigation }: any) => {
   const { balance, transferencia } = useBanca();
   const [numeroCuenta, setNumeroCuenta] = useState<string>('');
   const [cantidad, setCantidad] = useState<string>('');
+  const[nombre,setNombre] =useState<string>('');
 
   const handleTransfer = () => {
     const cantidadTranferir = parseFloat(cantidad);
@@ -23,7 +33,7 @@ const TransferenciaView: React.FC = ({ navegacion }: any) => {
     const aprovado = transferencia(cantidadTranferir);
     if (aprovado) {
       Alert.alert('Éxito', 'Transferencia realizada con éxito');
-      navegacion.goBack(); // Regresa a la pantalla de inicio
+      navigation.goBack(); // Regresa a la pantalla de inicio
     }
   };
 
@@ -36,6 +46,12 @@ const TransferenciaView: React.FC = ({ navegacion }: any) => {
         placeholder="Número de Cuenta"
         value={numeroCuenta}
         onChangeText={setNumeroCuenta}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Nombre"
+        value={nombre}
+        onChangeText={setNombre}
       />
       <TextInput
         style={styles.input}

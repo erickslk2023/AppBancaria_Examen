@@ -1,17 +1,23 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Inicio from '../Pages/Inicio';
-import TransfernciaView from '../Pages/TransferenciaView';
-import HistotialTrandacciones from '../Pages/HostorialTransacciones';
+import TransferenciaView from '../Pages/TransferenciaView';
+import HistorialTransacciones from '../Pages/HostorialTransacciones';
 
-const Stack = createStackNavigator();
+type RootStackParamList = {
+  Inicio: undefined;
+  Transferencias: undefined;
+  Historial: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavegacion: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="Inicio">
-      <Stack.Screen name="Inicio" component={AppNavegacion} />
-      <Stack.Screen name="Transferencias" component={TransfernciaView} />
-      <Stack.Screen name="Historial" component={HistotialTrandacciones} />
+      <Stack.Screen name="Inicio" component={Inicio} />
+      <Stack.Screen name="Transferencias" component={TransferenciaView} />
+      <Stack.Screen name="Historial" component={HistorialTransacciones} />
     </Stack.Navigator>
   );
 };

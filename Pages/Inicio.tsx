@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { useBanca } from '../Context/BancaContext';
+import { StackScreenProps } from '@react-navigation/stack';
 
-type inicioProps = {
-  navegacion: {
-    navigate: (vista: string) => void;
-  };
+type RootStackParamList = {
+  Inicio: undefined;
+  Transferencias: undefined;
+  Historial: undefined;
 };
 
-const Inicio: React.FC<inicioProps> = ({ navegacion }) => {
+type inicioProps = StackScreenProps<RootStackParamList, 'Inicio'>;
+
+const Inicio: React.FC<inicioProps> = ({ navigation }) => {
   const { balance, transacciones, depositos } = useBanca();
 
   return (
@@ -24,8 +27,8 @@ const Inicio: React.FC<inicioProps> = ({ navegacion }) => {
         keyExtractor={(item, index) => index.toString()}
       />
       
-      <Button title="Ir a Transferencias" onPress={() => navegacion.navigate('Transferencias')} />
-      <Button title="Ver Historial de Transacciones" onPress={() => navegacion.navigate('Historial')} />
+      <Button title="Ir a Transferencias" onPress={() => navigation.navigate('Transferencias')} />
+      <Button title="Ver Historial de Transacciones" onPress={() => navigation.navigate('Historial')} />
     </View>
   );
 };
