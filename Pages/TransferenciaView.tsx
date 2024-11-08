@@ -33,7 +33,7 @@ const TransferenciaView: React.FC = ({ navigation }: any) => {
     const aprovado = transferencia(cantidadTranferir);
     if (aprovado) {
       Alert.alert('Éxito', 'Transferencia realizada con éxito');
-      navigation.goBack(); // Regresa a la pantalla de inicio
+      navigation.goBack();
     }
   };
 
