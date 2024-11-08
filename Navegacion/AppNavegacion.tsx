@@ -6,14 +6,14 @@ import HistotialTrandacciones from '../Pages/HostorialTransacciones';
 
 const Stack = createStackNavigator();
 
-const AppNavigator: React.FC = () => {
+const AppNavegacion: React.FC = () => {
   return (
-    <Stack.Navigator rutaInicial="Inicio">
-      <Stack.Screen nombre="Inicio" componentw={Inicio} />
-      <Stack.Screen Nombre="Transferencias" component={TransfernciaView} />
-      <Stack.Screen nombre="Historial" component={HistotialTrandacciones} />
+    <Stack.Navigator initialRouteName="Inicio">
+      <Stack.Screen name="Inicio" component={AppNavegacion} />
+      <Stack.Screen name="Transferencias" component={TransfernciaView} />
+      <Stack.Screen name="Historial" component={HistotialTrandacciones} />
     </Stack.Navigator>
   );
 };
 
-export default AppNavigator;
+export default AppNavegacion;
